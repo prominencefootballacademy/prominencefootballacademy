@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>Prominence Football Academy</title>
+<style>
+:root{--n:#02061E;--d:#010310;--b:#3BA4E3;--w:#FFFFFF}
+*{box-sizing:border-box;margin:0;padding:0;user-select:none}
+body{height:100vh;overflow:hidden;display:grid;place-items:center;background:radial-gradient(circle at 50% 40%,#091b42,var(--n) 55%,var(--d));font-family:system-ui,-apple-system,sans-serif;color:var(--w);perspective:900px}
+.floor{position:fixed;bottom:-25%;left:-50%;width:200%;height:70%;background:linear-gradient(#3ba4e333 1px,transparent 1px),linear-gradient(90deg,#3ba4e333 1px,transparent 1px);background-size:44px 44px;transform:rotateX(75deg);animation:run 2s linear infinite;mask-image:linear-gradient(transparent,#000 40%,#000 80%,transparent)}
+@keyframes run{to{background-position:0 44px}}
+.stage{position:relative;z-index:2;text-align:center;padding:20px;transform-style:preserve-3d;transition:transform .1s ease-out}
+.ball-wrap{width:110px;height:110px;margin:0 auto 22px;position:relative;transform-style:preserve-3d;transform:translateZ(60px)}
+.ring{position:absolute;inset:-14px;border-radius:50%;border:3px dashed var(--b);box-shadow:0 0 25px var(--b);animation:spin 8s linear infinite}
+@keyframes spin{to{transform:rotateX(35deg) rotateZ(360deg)}}
+.ball{width:100%;height:100%;border-radius:50%;background:radial-gradient(circle at 30% 30%,var(--w) 60%,var(--b));border:4px solid var(--n);box-shadow:0 0 0 4px var(--b),0 20px 30px #000;display:grid;place-items:center;animation:bob 3s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-10px) rotateY(18deg)}}
+h1{font-size:clamp(2.2rem,9vw,5rem);font-weight:900;letter-spacing:4px;line-height:1;transform:translateZ(75px);text-shadow:0 2px 0 var(--b),0 4px 0 #237cb3,0 6px 0 #134a6e,0 8px 0 var(--n),0 10px 0 var(--d),0 20px 30px #000,0 0 30px #3ba4e388}
+h2{font-size:clamp(1rem,4vw,1.9rem);font-weight:800;letter-spacing:7px;color:var(--b);margin:10px 0 26px;transform:translateZ(50px);text-shadow:0 3px 0 var(--n),0 10px 20px #000}
+.card{display:inline-flex;align-items:center;gap:12px;padding:16px 28px;border-radius:16px;background:linear-gradient(145deg,var(--n),var(--d));border:2px solid var(--b);transform:translateZ(35px);box-shadow:0 8px 0 var(--n),0 10px 0 var(--b),0 22px 35px #000;font-weight:800;font-size:clamp(.9rem,3.5vw,1.3rem);letter-spacing:2px;text-transform:uppercase}
+.dot{width:12px;height:12px;border-radius:50%;background:var(--b);box-shadow:0 0 12px var(--b);animation:pulse 1.2s infinite}
+@keyframes pulse{50%{transform:scale(1.4);background:var(--w)}}
+</style>
+</head>
+<body>
+<div class="floor"></div>
+<main class="stage" id="s">
+  <div class="ball-wrap">
+    <div class="ring"></div>
+    <div class="ball">
+      <svg viewBox="0 0 100 100" width="84" height="84">
+        <path d="M10,60C25,45 48,55 56,84A44,44 0 0 1 10,60Z" fill="#3BA4E3"/>
+        <polygon points="50,32 67,44 60,64 40,64 33,44" fill="#02061E"/>
+        <polygon points="50,5 64,15 50,21 36,15" fill="#02061E"/>
+        <polygon points="92,36 86,52 75,45 78,30" fill="#02061E"/>
+        <polygon points="77,84 60,87 62,74 75,70" fill="#02061E"/>
+        <polygon points="23,84 25,70 38,74 40,87" fill="#02061E"/>
+        <polygon points="8,36 22,30 25,45 14,52" fill="#02061E"/>
+      </svg>
+    </div>
+  </div>
+  <h1>PROMINENCE</h1>
+  <h2>FOOTBALL ACADEMY</h2>
+  <div class="card"><span class="dot"></span>Website Under Development</div>
+</main>
+<script>
+const s=document.getElementById('s'),t=(x,y)=>s.style.transform=`rotateX(${-(y-innerHeight/2)/innerHeight*28}deg) rotateY(${(x-innerWidth/2)/innerWidth*32}deg)`;
+onmousemove=e=>t(e.clientX,e.clientY);
+ontouchmove=e=>t(e.touches[0].clientX,e.touches[0].clientY);
+onmouseleave=ontouchend=()=>s.style.transform='';
+</script>
+</body>
+</html>
